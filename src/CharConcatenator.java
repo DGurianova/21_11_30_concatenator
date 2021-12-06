@@ -1,18 +1,22 @@
 public class CharConcatenator implements IConcatenator {
+    @Override
     public String concatenate(String[] strings) {
-        String newFinalString = new String();
+        int length = 0;
+
         for (int i = 0; i < strings.length; i++) {
-            newFinalString = newFinalString + strings[i];
+            length += strings[i].length();
         }
-        char[] chars = newFinalString.toCharArray();
-        String result = new String();
-        for (int i = 0; i < chars.length; i++) {
-            result = result + chars[i];
-        }
-        return result.toString();
 
-        //TODO implement via string concatenation
+        char[] chars = new char[length];
+        int currentIndex = 0;
+
+        for (int i = 0; i < strings.length; i++) {
+            for (int j = 0; j < strings[i].length(); j++) {
+                chars[currentIndex] = strings[i].charAt(j);
+                currentIndex++;
+            }
+        }
+
+        return String.valueOf(chars);
     }
-
 }
-
